@@ -537,6 +537,22 @@ var adv = {"frames": [
 	"sourceSize": {"w":50,"h":37}
 },
 {
+	"filename": "adventurer-idle-02.png",
+	"frame": {"x":1,"y":504,"w":21,"h":32},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":14,"y":5,"w":21,"h":32},
+	"sourceSize": {"w":50,"h":37}
+},
+{
+	"filename": "adventurer-idle-03.png",
+	"frame": {"x":94,"y":471,"w":22,"h":31},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":12,"y":6,"w":22,"h":31},
+	"sourceSize": {"w":50,"h":37}
+},
+{
 	"filename": "adventurer-idle-2-00.png",
 	"frame": {"x":63,"y":344,"w":25,"h":29},
 	"rotated": false,
@@ -566,22 +582,6 @@ var adv = {"frames": [
 	"rotated": false,
 	"trimmed": true,
 	"spriteSourceSize": {"x":8,"y":7,"w":27,"h":30},
-	"sourceSize": {"w":50,"h":37}
-},
-{
-	"filename": "adventurer-idle-02.png",
-	"frame": {"x":1,"y":504,"w":21,"h":32},
-	"rotated": false,
-	"trimmed": true,
-	"spriteSourceSize": {"x":14,"y":5,"w":21,"h":32},
-	"sourceSize": {"w":50,"h":37}
-},
-{
-	"filename": "adventurer-idle-03.png",
-	"frame": {"x":94,"y":471,"w":22,"h":31},
-	"rotated": false,
-	"trimmed": true,
-	"spriteSourceSize": {"x":12,"y":6,"w":22,"h":31},
 	"sourceSize": {"w":50,"h":37}
 },
 {

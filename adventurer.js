@@ -25,8 +25,9 @@ var ticks = {
 }
 
 var sprite = {
-    IDLE : {start : 65, total:2},
-    JUMP : {start : 76, total:4}
+    IDLE : {start : 65, total:4},
+    JUMP : {start : 76, total:4},
+    RUN : {start :84, total:6}
 }
 function Player(x,y){
     this.x = x;
@@ -39,16 +40,18 @@ function Player(x,y){
     this.height = 50;
     this.width = 37;
     this.onGround;
-    this.frame = sprite.IDLE.start;
+    this.frame;
+    this.state = sprite.IDLE;
     this.frameCount = 0;
     this.image = new Image();
     this.image.src = 'adventurer_spt.png';
+    this.stateTicks = ticks.IDLE;
     this.lastTick = new Date().getTime()
     ; 
     this.draw = function(){
-        if((new Date().getTime() - this.lastTick) >= ticks.IDLE){
+        if((new Date().getTime() - this.lastTick) >= this.stateTicks){
             this.lastTick = new Date().getTime();
-            this.frame = sprite.IDLE.start + (++this.frameCount)% sprite.IDLE.total;
+            this.frame = this.state.start + (++this.frameCount)% this.state.total;
         }
         var sX = adv.frames[this.frame].frame.x;
         var sY = adv.frames[this.frame].frame.y;
@@ -67,12 +70,20 @@ function Player(x,y){
         ctx.restore();   
     }
 
-    this.updateAnim = function(){
-        
-        this.draw();
+    this.setState = function(){
+        if(keysDown.RIGHT || keysDown.LEFT && this.onGround){
+            this.state = sprite.RUN;
+            this.stateTicks = ticks.REST;
+        }else{
+            this.state = sprite.IDLE;
+            this.stateTicks = ticks.IDLE;
+        }
+        if(keysDown.UP && !this.onGround){
+            this.frameCount = 0;
+            this.state = sprite.JUMP;
+            this.stateTicks = ticks.REST;
+        }
     }
-
-
     this.update = function(){
         
         if(keysDown.UP && this.onGround){
@@ -102,8 +113,8 @@ function Player(x,y){
         if(this.x > can.width - this.width){
             this.x = can.width - this.width;
         }
-
-        // this.draw();
+        this.setState();
+        this.draw();
     }
 }
 
@@ -137,7 +148,6 @@ function animate(){
     requestAnimationFrame(animate);
     ctx.clearRect(0,0,can.width,can.height);
     player.update();
-    player.updateAnim();
 }
 setTimeout(() => {
     animate();
